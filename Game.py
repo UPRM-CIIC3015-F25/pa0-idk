@@ -24,8 +24,9 @@ def ball_movement():
             # TODO Task 2: Fix score to increase by 1
             score += 1  # Increase player score
             ball_speed_y *= -1  # Reverse ball's vertical direction
+            ball_speed_x += 2
             # TODO Task 6: Add sound effects HERE
-
+            pygame.mixer.Sound.play(Thud)
 
 
     # Ball collision with top boundary
@@ -65,6 +66,9 @@ def restart():
 pygame.mixer.pre_init(44100, -16, 1, 1024)
 pygame.init()
 clock = pygame.time.Clock()
+pygame.mixer.music.set_volume(0.2)
+pygame.mixer.music.load(f"assests/Sounds/WelcomeToEugenes.ogg")
+pygame.mixer.music.play(-1)
 
 # Main Window setup
 screen_width = 500  # Screen width (can be adjusted)
@@ -80,7 +84,7 @@ mint_green = pygame.Color(173, 235, 179)
 ball = pygame.Rect(screen_width / 2 - 15, screen_height / 2 - 15, 30, 30)  # Ball (centered)
 # TODO Task 1 Make the paddle bigger
 player_height = 15
-player_width = 180
+player_width = 120
 player = pygame.Rect(screen_width/2 - 45, screen_height - 20, player_width, player_height)  # Player paddle
 
 # Game Variables
@@ -90,7 +94,7 @@ player_speed = 0
 
 # Score Text setup
 score = 0
-basic_font = pygame.font.Font('freesansbold.ttf', 32)  # Font for displaying score
+basic_font = pygame.font.Font('assests/Font/pixel.ttf', 32,)  # Font for displaying score
 
 start = False  # Indicates if the game has started
 
@@ -104,16 +108,16 @@ while True:
             pygame.quit()
             sys.exit()
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                 player_speed -= 6  # Move paddle left
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                 player_speed += 6  # Move paddle right
-            if event.key == pygame.K_SPACE:
+            if event.key == pygame.K_SPACE or event.key == pygame.K_k:
                 start = True  # Start the ball movement
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                 player_speed += 6  # Stop moving left
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                 player_speed -= 6  # Stop moving right
 
     # Game Logic
@@ -123,14 +127,18 @@ while True:
     # Visuals
     light_grey = pygame.Color('grey83')
     red = pygame.Color('red')
-    the_idk = pygame.Color('black')
-    screen.fill(bg_color)  # Clear screen with background color
-    pygame.draw.rect(screen, light_grey, player)  # Draw player paddle
+    the_idk = pygame.Color('white')
+    black = pygame.Color('black')
+    screen.fill(black)  # Clear screen with background color
+    pygame.draw.rect(screen, the_idk, player)  # Draw player paddle
     # TODO Task 3: Change the Ball Color
     pygame.draw.ellipse(screen, mint_green, ball)  # Draw ball
-    player_text = basic_font.render(f'{score}', False, light_grey)  # Render player score
+    player_text = basic_font.render(f'{score}', False, the_idk)  # Render player score
     screen.blit(player_text, (screen_width/2 - 15, 10))  # Display score on screen
 
     # Update display
     pygame.display.flip()
     clock.tick(60)  # Maintain 60 frames per second
+
+    # Sounds and music
+    Thud = pygame.mixer.Sound("assests/Sounds/Cursor_Select.ogg")
