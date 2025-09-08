@@ -12,11 +12,11 @@ def ball_movement():
 
     # Start the ball movement when the game begins
     # TODO Task 5 Create a Merge Conflict
-    speed = 10
-    start = True
-    if start:
+    speed =
+    if ball_speed_x == 0:
         ball_speed_x = speed * random.choice((1, -1))  # Randomize initial horizontal direction
         ball_speed_y = speed * random.choice((1, -1))  # Randomize initial vertical direction
+        start = False
 
 
     # Ball collision with the player paddle
@@ -143,3 +143,6 @@ while True:
 
     # Sounds and music
     Thud = pygame.mixer.Sound("assests/Sounds/Cursor_Select.ogg")
+
+    #So read the instructions and you will see that Programmer A has less to do after the project is done.
+    #Since you did most just create a Merge conflict by changeing line
