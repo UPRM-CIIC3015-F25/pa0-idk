@@ -12,7 +12,7 @@ def ball_movement():
 
     # Start the ball movement when the game begins
     # TODO Task 5 Create a Merge Conflict
-    speed = 8
+    speed = 5
     if ball_speed_x == 0:
         ball_speed_x = speed * random.choice((1, -1))  # Randomize initial horizontal direction
         ball_speed_y = speed * random.choice((1, -1))  # Randomize initial vertical direction
@@ -149,3 +149,6 @@ while True:
     #The one determined to be of programmer A. I will be programmer B and do the rest of the work.
     #Let's meet at the library. email me at angel.cruz57@upr.edu so that we can upload the project together.
     #Thx, Sincerely Angel
+
+    # Sorry about barging in I got an exam tomorrow as I am writing this, also I send an email about
+    # But in case you don't receive it here's my number: 787-231-2375 so we can text
